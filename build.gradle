@@ -2,6 +2,7 @@ buildscript {
     ext.kotlin_version = '1.2.31'
     ext.springboot_version = '2.0.3.RELEASE'
     ext.dokka_version = '0.9.13'
+    ext.groovyVersion = '2.3.0'
 
     repositories {
         mavenCentral()
@@ -32,6 +33,7 @@ apply plugin: 'kotlin-jpa'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.jetbrains.dokka'
+
 
 def appMainClass = 'ApplicationKt'
 
@@ -71,6 +73,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-freemarker')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-devtools')
+    compile "org.springframework.integration:spring-integration-scripting"
+    compile "org.codehaus.groovy:groovy-all:$groovyVersion"
     compile('mysql:mysql-connector-java:8.0.11')
     compile('com.alibaba:fastjson:1.2.0')
     testCompile('org.springframework.boot:spring-boot-starter-test')
