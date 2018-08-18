@@ -75,6 +75,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-devtools')
     compile "org.springframework.integration:spring-integration-scripting"
     compile "org.codehaus.groovy:groovy-all:$groovyVersion"
+    compile group: 'com.google.guava', name: 'guava', version: '22.0'
     compile('mysql:mysql-connector-java:8.0.11')
     compile 'io.vlingo:vlingo-actors:0.4.8'
     compile('com.alibaba:fastjson:1.2.0')

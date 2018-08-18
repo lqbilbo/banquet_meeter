@@ -1,21 +1,22 @@
 package com.bm.kotlin.streams;
 
+import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamTests {
 
-    @Before
+    /*@Before
     public void setUp() {
         System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "8");
         System.out.println("set common pool size!");
-    }
+    }*/
 
     @Test
     public void testParallel() {
@@ -94,24 +95,47 @@ public class StreamTests {
         System.out.println(result);
     }
 
-    //测试性能
+    //测试性能请移步lambdainaction项目
+
     @Test
-    public void testPerformance() {
-
-        Function<Long, Long> adder = aLong -> aLong * aLong;
-        long n = 10_000_000L;
-
-        long fastest = Long.MAX_VALUE;
-        for (int i = 0; i < 10; i++) {
-            long start = System.nanoTime();
-            long sum = adder.apply(n);
-            long duration = (System.nanoTime() - start) / 1_000_000;
-            System.out.println("Result: " + sum);
-            if (duration < fastest) fastest = duration;
-        }
-        System.out.println(fastest);
-
+    public void testIntermediateStateless() {
+        List<String> list = Lists.newArrayList("bcd", "cde", "def", "abc");
+        List<String> result = list.stream()
+                .filter(e -> e.length() >= 3)
+                .map(e -> String.valueOf(e.charAt(0)))
+                .collect(Collectors.toList());
+        System.out.println("--------------------------");
+        System.out.println(result);
     }
+
+    @Test
+    public void testParallelIntermediateStateless() {
+        List<String> list = Lists.newArrayList("bcd", "cde", "def", "abc");
+        List<String> result = list.stream()
+                .parallel()
+                .filter(e -> e.length() >= 3)
+                .sorted()
+                .map(e -> String.valueOf(e.charAt(0)))
+                .collect(Collectors.toList());
+        System.out.println("--------------------------");
+        System.out.println(result);
+    }
+
+    @Test
+    public void testForeach() {
+        List<String> list = Lists.newArrayList("bcd", "cde", "def", "abc");
+        List<String> result = Lists.newArrayListWithCapacity(list.size());
+        for (String str : list) {
+            if (str.length() >= 3) {
+                char e = str.charAt(0);
+                String tempStr = String.valueOf(e);
+                result.add(tempStr);
+            }
+        }
+        System.out.println("--------------------------");
+        System.out.println(result);
+    }
+
 
 
 }
