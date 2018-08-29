@@ -77,7 +77,7 @@ dependencies {
     compile "org.codehaus.groovy:groovy-all:$groovyVersion"
     compile group: 'com.google.guava', name: 'guava', version: '22.0'
     compile('mysql:mysql-connector-java:8.0.11')
-    compile 'io.vlingo:vlingo-actors:0.4.8'
+    compile 'io.vlingo:vlingo-actors:0.5.7'
     compile('com.alibaba:fastjson:1.2.0')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'junit', name: 'junit', version: '4.12'

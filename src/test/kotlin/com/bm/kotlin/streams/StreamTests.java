@@ -2,6 +2,7 @@ package com.bm.kotlin.streams;
 
 import com.google.common.collect.Lists;
 import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,11 +13,11 @@ import java.util.stream.Stream;
 
 public class StreamTests {
 
-    /*@Before
+    @Before
     public void setUp() {
-        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "8");
+        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "4");
         System.out.println("set common pool size!");
-    }*/
+    }
 
     @Test
     public void testParallel() {
@@ -27,7 +28,7 @@ public class StreamTests {
         List<Person> list = getPersonList(init);
 
         // 1 使用ArrayList
-        List<Person> result = new ArrayList<>();
+        List<Person> result = Lists.newArrayList();
         // 2 使用SynchronizedList
 //         List<Person> result = Collections.synchronizedList(new ArrayList<>());
         // 3 使用CopyOnWriteArrayList
@@ -38,43 +39,21 @@ public class StreamTests {
 
 
         //同步可以吗？
-        synchronized(this) {
+//        synchronized(this) {
             list.stream().parallel().forEach(e -> {
                 //null判断有用吗？
                 System.out.println(Thread.currentThread().getName());
-                if (e != null) {
+//                if (e != null) {
 //                synchronized (e) {
                     result.add(e);
 //                }
-                }
+//                }
             });
-        }
+//        }
+
+        System.out.println("----------------------------------------");
         result.forEach(e -> System.out.println(e + ""));
         System.out.println("size: " + result.size());
-    }
-
-    @NotNull
-    private List<Person> getPersonList(Init init) {
-        Person person1 = init.getPerson1();
-        Person person2 = init.getPerson2();
-        Person person3 = init.getPerson3();
-        Person person4 = init.getPerson4();
-        Person person5 = init.getPerson5();
-        Person person6 = init.getPerson6();
-        Person person7 = init.getPerson7();
-        Person person8 = init.getPerson8();
-        Person person11 = init.getPerson11();
-        Person person12 = init.getPerson12();
-        Person person13 = init.getPerson13();
-        Person person14 = init.getPerson14();
-        Person person15 = init.getPerson15();
-        Person person16 = init.getPerson16();
-        Person person17 = init.getPerson17();
-        Person person18 = init.getPerson18();
-
-        return new ArrayList<>(Arrays.asList(person1,person2,person3,person4,person5,person6,
-                person7,person8,person11,person12,person13,person14,person15,person16,
-                person17,person18));
     }
 
     class Person {
@@ -84,14 +63,21 @@ public class StreamTests {
         double weight;
         String sex;
 
-        public Person() {
-        }
-
         public Person(String name, int age, double weight, String sex) {
             this.name = name;
             this.age = age;
             this.weight = weight;
             this.sex = sex;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    ", weight=" + weight +
+                    ", sex='" + sex + '\'' +
+                    '}';
         }
     }
 
@@ -142,6 +128,56 @@ public class StreamTests {
         System.out.println(result);
     }
 
+    /**
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+    @NotNull
+    private List<Person> getPersonList(Init init) {
+        Person person1 = init.getPerson1();
+        Person person2 = init.getPerson2();
+        Person person3 = init.getPerson3();
+        Person person4 = init.getPerson4();
+        Person person5 = init.getPerson5();
+        Person person6 = init.getPerson6();
+        Person person7 = init.getPerson7();
+        Person person8 = init.getPerson8();
+        Person person11 = init.getPerson11();
+        Person person12 = init.getPerson12();
+        Person person13 = init.getPerson13();
+        Person person14 = init.getPerson14();
+        Person person15 = init.getPerson15();
+        Person person16 = init.getPerson16();
+        Person person17 = init.getPerson17();
+        Person person18 = init.getPerson18();
+
+        return new ArrayList<>(Arrays.asList(person1,person2,person3,person4,person5,person6,
+                person7,person8,person11,person12,person13,person14,person15,person16,
+                person17,person18));
+    }
 
     private class Init {
         private Person person1;
@@ -227,6 +263,22 @@ public class StreamTests {
 
         public Init invoke() {
             person1 = new Person("lixia", 18, 120.0, "女");
+            /*person2 = new Person("lixia", 18, 120.0, "女");
+            person3 = new Person("lixia", 18, 120.0, "女");
+            person4 = new Person("lixia", 18, 120.0, "女");
+            person5 = new Person("lixia", 18, 120.0, "女");
+            person6 = new Person("lixia", 18, 120.0, "女");
+            person7 = new Person("lixia", 18, 120.0, "女");
+            person8 = new Person("lixia", 18, 120.0, "女");
+            person11 = new Person("lixia", 18, 120.0, "女");
+            person12 = new Person("lixia", 18, 120.0, "女");
+            person13 = new Person("lixia", 18, 120.0, "女");
+            person14 = new Person("lixia", 18, 120.0, "女");
+            person15 = new Person("lixia", 18, 120.0, "女");
+            person16 = new Person("lixia", 18, 120.0, "女");
+            person17 = new Person("lixia", 18, 120.0, "女");
+            person18 = new Person("lixia", 18, 120.0, "女");*/
+
             person2 = new Person("wangwu", 20, 122.0, "女");
             person3 = new Person("zhangsan", 14, 133.0, "男");
             person4 = new Person("sihuang", 13, 99.0, "女");
