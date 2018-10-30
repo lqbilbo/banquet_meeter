@@ -21,6 +21,12 @@ class PersonController {
 
     val logger: Logger? = null
 
+    @GetMapping(value = "/")
+    @ResponseBody
+    fun sayHello(): Any {
+        return "Hello World"
+    }
+
     @GetMapping(value = "/person")
     @ResponseBody
     fun hello(@RequestParam(value = "lastName") lastName: String): Any {

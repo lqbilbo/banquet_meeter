@@ -11,7 +11,7 @@
         <integration:channel id="person" />
     </beans:beans>
 
-    <integration:splitter input-channel="person">
+    <!--<integration:splitter input-channel="person">
         <script:script lang="groovy" location="file:scripts/groovy/person.groovy"></script:script>
-    </integration:splitter>
+    </integration:splitter>-->
 </beans>

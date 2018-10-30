@@ -2,7 +2,6 @@ buildscript {
     ext.kotlin_version = '1.2.31'
     ext.springboot_version = '2.0.3.RELEASE'
     ext.dokka_version = '0.9.13'
-    ext.groovyVersion = '2.3.0'
 
     repositories {
         mavenCentral()
@@ -74,7 +73,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-devtools')
     compile "org.springframework.integration:spring-integration-scripting"
-    compile "org.codehaus.groovy:groovy-all:$groovyVersion"
     compile group: 'com.google.guava', name: 'guava', version: '22.0'
     compile('mysql:mysql-connector-java:8.0.11')
     compile 'io.vlingo:vlingo-actors:0.5.7'
